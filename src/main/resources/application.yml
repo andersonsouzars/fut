@@ -1,0 +1,43 @@
+server:
+  port: ${PORT:8080}  # Render define a porta via variável
+
+spring:
+  profiles:
+    active: dev
+
+---
+# Profile local (desenvolvimento)
+spring:
+  config:
+    activate:
+      on-profile: dev
+  devtools:
+    restart:
+      poll-interval: 1000
+  datasource:
+    url: jdbc:postgresql://localhost:5432/fut_db
+    username: user
+    password: 123
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+
+---
+# Profile produção (Render)
+spring:
+  config:
+    activate:
+      on-profile: prod
+  datasource:
+    url: ${DATABASE_URL}  # Render injeta automaticamente
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: update
+    show-sql: false
