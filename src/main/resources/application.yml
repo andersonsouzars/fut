@@ -35,7 +35,9 @@ spring:
     activate:
       on-profile: prod
   datasource:
-    url: ${DATABASE_URL}  # Render injeta automaticamente
+    url: ${DATABASE_URL} # Render injeta automaticamente
+    username: ${DATABASE_USER} # Render injeta automaticamente
+    password: ${DATABASE_PASSWORD} # Render injeta automaticamente
   jpa:
     database-platform: org.hibernate.dialect.PostgreSQLDialect
     hibernate:
